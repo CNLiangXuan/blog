@@ -812,3 +812,779 @@ div{
 float: left;文字环绕效果，半脱离
 position: absolute;/*不环绕，被覆盖，全脱离*/
 ```
+
+### 元素显示类型
+
+![](./img/00.png)
+
+<span>标签只可设置左右边距，不可设置上下边距
+
+![](./img/01.png)
+
+### 精灵图/雪碧图
+
+一、将导航背景图片，按钮背景图片等有规则的合并成一张背景图，即将多张图片合为一张整图，然后用background-position”来实现背景图片的定位技术。
+
+二、图片整合的优势:
+
+1)通过图片整合来减少对服务器的请求次数，从而提高面的加载速度。
+
+2)通过整合图片来减小图片的体积。
+
+### 宽高自适应
+
+```css
+width: auto;/*宽度不设置或设置为auto时为宽度自适应*/
+设置为100%时不是自适应，当加入内边距时会撑开滚动条
+```
+
+### 浮动元素的高度自适应
+
+父元素不写高度时，子元素写了浮动后，父元素会发生高度塌陷
+
+方法1:给父元素添加声明overflow:hidden;(缺点:会隐藏溢出的元素)
+
+方法2:在浮动元素下方添加空块元素,并给该元素添加声明: clear:both;height:O;overflow:hidden;(缺点:在结构里增加了空的标签，不利于代码可读性，且降低了浏览器的性能)
+
+方法3:万能清除浮动法
+
+```css
+.box::after {
+    content: "ddddd";
+    clear: both;
+    display: block;
+    height: 0;
+    width: 0;
+    visibility: hidden;/*让里面的文字不显示*/
+}
+```
+
+```css
+width: calc(100% - 200px);/*该函数运算符可为“+ - * / ” ,但运算符两端必须有空格*/
+使用该函数裁剪出合适的大小后可和其他块一起通过浮动来调整位置
+```
+
+### 多栏布局写法
+
+```css
+//让页面能显示100%的高度
+html,body{
+  height: 100%;
+}
+```
+### 选择框
+
+#### 单选框
+
+```html
+ <input type="radio" name="aaa" id="yiban">     
+ <label for="yiban">一般</label>    
+ type="radio"为单选框
+ name="aaa" 为同一组
+<!--有label标签点击文字可选-->
+```
+
+#### 复选框
+
+```html
+  </div>
+  <div>你擅长的技术：</div>
+  <div>
+    <input type="checkbox"  name="bbb" id="html">
+    <label for="html">html</label>
+    <input type="checkbox" name="bbb" id="css">
+    <label for="css">css</label>
+    <input type="checkbox" name="bbb" id="js">
+    <label for="js">js</label>
+  </div>
+</div>
+```
+
+### 上传文件
+
+```html
+<input type="file" name="" id="">
+```
+
+### 隐藏按钮
+
+```html
+<input type="hidden" name=""  value="带给后端的个人信息">
+```
+
+### 禁用，只读
+
+```html
+<button disabled>注册</button>
+<input type="text" disabled value="111111">
+disabled 禁用
+<input type="text" readonly value="111111">
+readonly 只读
+```
+
+### 图片按钮-代替提交按钮
+
+```html
+<form action="">
+  <!--上传文件-->
+  <input type="image" src="submit.jpg">
+</form>
+```
+
+### 下拉菜单
+
+```html
+<!-- select 支持的属性
+  1. size ,显示几个
+  2.multiple,支持多选
+-->
+<!-- option的属性
+  1. value ，提供给后端需要用的value值
+  2. selected ，默认选中
+--><label>
+  <select size="3" multiple>
+    <option value="ln">辽宁</option>
+    <option value="sd">山东</option>
+    <option selected>陕西</option>
+    <option>河南</option>
+    <option>河北</option>
+
+  </select>
+</label>
+```
+
+### 多行文本输入框-文本域
+
+```html
+<!--
+    placeholder:提示文字
+    默认value: 写在双标签内部，注意不要随便写空格和换行
+-->
+<label>
+  <textarea placeholder="请输入你的意见">提前设置好的value</textarea>
+</label>
+```
+
+### 表单
+
+```html
+<fieldset>
+  <legend>性别</legend>
+  <input type="radio" name="aa">男
+  <br>
+  <input type="radio" name="aa">女
+</fieldset>
+```
+
+### HTML5语法
+
+#### 内容类型(ContentType)
+
+HTML5的文件扩展符与内容类型保持不变，仍然为".html"或".htm"。
+
+#### DOCTYPE声明
+
+不区分大小写
+
+#### 指定字符集编码
+
+meta charset="UTF-8"
+
+#### 可省略标记的元素
+
+不允许写结束标记的元素: br、col、embed、hr、img、input、. link、meta
+
+可以省略结束标记的元素: li、 dt、dd、p. option、colgroup、thead、tbody、tfoot、tr、td、 th
+
+可以省略全部标记的元素: html、head、body、colgroup、tbody
+
+#### 省略引号
+
+属性值可以使用双引号，也可以使用单引号。
+
+#### HTML5新增语义化标签
+
+section元素表示页面中的一个内容区块
+
+article元素表示一块与上下文无关的独立的内容
+
+aside元素在article之外的，与article内容相关的辅助信息
+
+header元素表示页面中一个内容区块或整个页面的标题
+
+footer元素表示页面中一个内容区块或整个页面的脚注
+
+nav元素表示页面中导航链接部分
+
+figure元素表示一段独立的流内容，使用figcaption元素为其添加标题(第一个或最后一个子元素的位置)main元素表示页面中的主要的内容(ie不兼容)
+
+### 音频
+
+```html
+<audio src="jiejie.wav" controls loop autoplay muted></audio>
+<!-- controls ：控制栏
+    loop:循环
+    autoplay:自动播放
+    muted：静音播放
+ -->
+ ```
+
+ ### 视频
+
+ ```html
+<video src="movie.mp4" controls loop muted poster="poster.jpg" autoplay width="300px" height="100px"></video>
+<!-- controls ：控制栏
+    loop:循环
+    autoplay:自动播放
+    muted：静音播放
+    poster:海报
+    width，height：设置宽高
+ -->
+ ```
+
+### 数据列表
+
+```html
+<input type="text" list="mylist">
+<!-- 关联列表，支持查询 -->
+<datalist id="mylist">
+    <option value="手机"></option>
+    <option value="手表"></option>
+    <option value="手环"></option>
+    <option value="手镯"></option>
+</datalist>
+```
+
+### 增强表单属性
+
+```html
+颜色选择：<input type="color" name="color">
+用户名：<input type="text" autofocus pattern="[0-9][A-Z]{3}">
+邮箱：<input type="email" multiple autofocus>
+<!-- required：必填项，不能为空
+      multiple:可填多个地址，用“，”隔开
+      autofocus：图标焦点，一个页面只能有一个
+      pattern:设置输入密码格式，如此时设为一个数字+三个大写字母
+-->
+url地址（完整地址）：<input type="url">
+电话号码：<input type="tel">
+<!-- 手机端使用 -->
+滑块效果：<input type="range" name="range" min="100" max="200" value="200" step="10">
+<!--
+    min,max可设置区间
+    step:步长
+    value：设置初值
+ -->
+ 数字类型：<input type="number" max="10" name="number">
+ <!--
+    保证输入为数字
+    min,max可设置区间
+    step:步长
+    value：设置初值
+-->
+搜索：<input type="search">
+日期选择：<input type="date"> 、
+月份选择：<input type="month">
+周数选择：<input type="week">  
+精确时间： <input type="datetime-local">
+```
+
+### CSS3的概念和优势
+
+.css3是ccs技术的开级敌本，css3语言开发是朝着模块比发展的。以前的规范作为一个横块实在是太庞大而且比较复杂，所以，把它分解为一些小的摸块，更多新的模块也被加入进来。这些模块包括:盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等。
+
+.css3的优点:.css3将完全向后兼容，所以没有必要修改现在的设计来让它们继续运作，风络就览器也还将继续支特CSS2。，对我们来说，css3主要的影响是将可以使用新的可用的进择绷和羁住，这些会允许实现的.css3的优点:css3将完全向后兼容，所以没有必要修改现在的设计来让它们继续运作，风络就览器也还将继续支特CSS2。，对我们来说，css3主要的影响是将可以使用新的可用的进择绷和羁住，这些会允许实现的设计效果（譬如动态和渐变)，而且可以很简单的设计出现在的设计效果（比如说使用分栏)
+
+### 渐进增强和优雅降级
+
+渐进增强 progressive enhancement:
+
+针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。
+
+优雅降级graceful degradation:
+
+—开始就构建完整的功能，然后再针对低版本浏览器进行兼容。
+
+区别:
+
+优雅降级是从复杂的现状开始，并试图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降段(北能哀威)意味着(往值看，而轮进增强意味着朝前看，同时保证其根基处于安全地带。
+
+### 层级选择器
+
+```css
+ +选择这个节点的后面第一个兄弟 
+.child + li{
+    background: #219cea;
+}
+ ~选择这个节点的后面所有兄弟 
+.child ~ li{
+    background: #219cea;
+}
+```
+
+### 属性选择器
+
+```css
+/* =完全匹配，只有只含box1的被选中 */
+div[class=box1] {
+    background: lightskyblue;
+}
+/* ~=包含就匹配 */
+div[class*="1"],p[class*="1"]{
+    color: green;
+}
+/*  模糊匹配
+    class^=b 以这个开头的
+    class$=b 以这个结尾的
+    class*=b 包含这个字符
+*/
+div[class^=b]{
+    border: 3px solid blue;
+}
+/属性选择/
+input[type=email] {
+    background: #0c008b;
+}
+```
+
+### 伪类选择器
+
+#### 结构性伪类选择器
+
+X:first-child 匹配子集的第一个元素。IE7就可以支持
+
+X:last-child匹配父元素中最后一个X元素
+
+X:nth-child(n)用于匹配索引值为n的子元素。索引值从1开始
+
+X:only-child这个伪类一般用的比较少，比如上述代码匹配的是div下的有且仅有一个的p，也就是说，如果div内有多个p，将不匹配。
+
+X:root匹配文档的根元素。在HTML（标准通用标记语言下的一个应用)中，根元素永远是HTML
+
+X:empty匹配没有任何子元素（包括包含文本)的元素X
+
+#### 目标伪类选择器
+
+E:target选择匹配E的所有元素，且匹配元素被相关URL指向
+
+#### U元素状态伪类选择器
+
+E:enabled 匹配所有用户界面(form表单）中处于可用状态的E元素
+
+E:disabled 匹配所有用户界面(form表单）中处于不可用状态的E元素
+
+E:checked 匹配所有用户界面(form表单）中处于选中状态的元素E
+
+E::selection 匹配E元素中被用户选中或处于高亮状态的部分
+
+#### 否定伪类选择器
+
+E:not(s)(IE6-8浏览器不支持:not()选择器。)匹配所有不匹配简单选择符s的元素E
+#### 动态伪类选择器
+
+E:link
+链接伪类选择器
+选择匹配的E元素，而且匹配元素被定义了超链接并未被访问过。常用于链接描点上
+
+E:visited
+链接伪类选择器
+选择匹配的E元素，而且匹配元素被定义了超链接并已被访问过。常用于链接描点上
+
+E:active
+用户行为选择器
+选择匹配的E元素，且匹配元素被激活。常用于链接描点和按钮上
+
+E:hover
+用户行为选择器
+选择匹配的E元素，且用户鼠标停留在元素E上。IE6及以下浏览器仅支持a:hover
+
+### 伪元素
+
+```css
+/*伪元素*/
+div::first-letter {
+    font-size: 30px;
+    color: red;
+}
+div::first-line{
+    color: yellowgreen;
+}
+div::before{
+    content: "aaaaa";
+}
+div::after{
+    content: "bbbbbb";
+}
+```
+
+### 文本阴影
+
+```css
+div{
+  text-shadow: 10 10px 1px red, 0 -10px 1px yellow;
+}
+/* 10px 水平方向位移，向右
+    10px 垂直方向位移，向下
+    1px 模糊程度，越大越模糊
+    支持多个阴影
+ */
+ ```
+
+ ### 盒子阴影
+
+ ```css
+ /*box-shadow: 10px 10px 10px #ed164b, -10px -10px 10px 200px red;*/
+/* 200px 设置阴影的大小
+ ,inset设置内阴影*/
+ ```
+
+ ### 字体引入
+
+ ```css
+@font-face {
+  font-family: miaomiao;
+  /* 给自己的字体起名 */
+    src: url("font/ygyxsziti2.0.ttf");
+    [font-weight: <weight>];
+    [font-style: <style>];//设置是否倾斜。。。
+}
+div{
+    font-family: miaomiao,serif;
+    font-size: 50px;
+    color: red;
+    text-shadow: 5px 0 0 green;
+}
+```
+
+### 怪异盒模型
+
+```css
+box-sizing: border-box;
+/* 怪异盒模型，里面的内容大小永远不超过盒子 */
+```
+
+### 弹性盒
+
+```css
+1.display: flex;
+/*  弹性盒设置方式，
+影响：
+    1.会让子元素默认横向排列
+    2.让原来的行内元素变成块级元素
+    3.只有一个元素的时候，margin: auto自动居中
+*/
+2.   flex-direction: column-reverse;
+/*  弹性盒主轴方向
+    row,水平排列
+    column，竖直排列
+    row-reverse,水平方向反向
+    column-reverse,竖直方向反向
+  */
+3.  justify-content: space-around;
+/* 调整主轴对齐方向         
+    flex-start，向左对齐
+    flex-end，向右对齐
+    center,中间对齐
+    space-between,两端对齐
+    space-around，距离环绕`
+*/
+4.    align-items: center;
+/*  调整侧轴方向
+    flex-end
+    flex-start
+    center
+*/
+5.flex-wrap: wrap;
+/*  折行  */
+
+6.align-content: space-around;
+/*  控制折行后的行间距
+  flex-start，紧密排列，整体向前移
+  flex-end，紧密排列，整体向后移
+  space-between
+  space-around
+  */
+```
+### 移动端布局
+
+```html
+<!--
+    模拟器上显示分辨率
+    css像素： 设备的独立像素
+    物理分辨率： 设备像素
+
+    设备像素比（dpr）=物理像素/CSS像素
+    适配不同分辨率的手机
+
+    iphone6 1css 像素===2物理像素
+
+
+    设计稿：
+    1.css像素375，物理像素750（为了清晰的页面）
+    2.1份（提供），多份？
+    尽量使用百分比，弹性盒布局，rem布局
+-->
+设计移动端必不可少的一句话
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--  user-scalable=no,用户不能缩放
+        content="width=device-width，理想宽度等于设备宽度
+        initial-scale=1.0，1不缩放
+  -->
+```
+
+### 横向滚动条
+
+```css
+    flex-shrink: 0;
+/*  横向滚动条设置  */
+仍可使用
+overflow: auto;
+```
+
+### 多列布局
+
+```css
+/*  显示的列数*/
+column-count: 5;
+/* 调整列间距 */
+  column-gap: 30px;
+  /* 列边框 */
+  column-rule: 2px solid red;
+  /* 列高度统一 */
+  column-fill: auto;
+/* auto把父盒子占满，不再考虑分成多少列 */
+/* 调整列宽 */
+  column-width: 500px;
+ 在子盒子中设置
+   div>h1{
+  column-span: all;}
+  /* 横跨几列 */
+      break-inside: avoid;
+/*  禁止盒子内部折行显示  */
+```
+
+### 响应式布局
+
+```css
+通过获取屏幕宽度来改变显示内容
+@media screen and (max-width: 1000px) and (min-width: 500px){
+  body{
+    background: red;
+  }
+}
+
+/* 竖屏*/
+@media screen and (orientation: portrait) {
+    div {
+        width: 33.333%;
+    }
+}
+/* 横屏 */
+@media screen and (orientation: landscape) {
+    div {
+        width: 20%;
+    }
+}
+```
+
+### 单位转换
+
+```css
+/*
+  100vh === 视口的高度
+  vh view-height
+  100 vw === 视口宽度
+  vw view-width
+  */
+/*
+ 没有滚动条的时候，
+ 100vw === 100%
+ 有滚动条的时候
+ 100vm 包含滚动条，窗口的大小
+ 100% 刨除滚动条 剩余的大小
+ */
+ ```
+
+### 渐变
+
+```css
+ 1.线性渐变
+   background: linear-gradient(0deg, red,green,yellow);
+/* 渐变属性，支持n个值
+ 默认为 to bottom 为从上到下,修改可改变其方向值to left top
+ */
+ 2.径向渐变
+ background: radial-gradient(red 0%,green 10%,blue 30%);
+ // 设置百分比表示到百分之几为该颜色
+   background: radial-gradient(circle,red ,green,blue);
+/* circle,使涟漪变成一个圆 */
+  background: -webkit-radial-gradient(60% 40%,farthest-corner,blue,green,yellow,black)
+/* 设置中心位置，虽然这里报错但还是有用 */
+
+重复渐变
+  background: repeating-radial-gradient(red,yellow 10%,green 20%);
+/* repeating-linear-gradient 直
+ repeating-radial-gradient  圆
+ */
+ ```
+
+![](./img/02.png)
+
+### 过渡
+
+```css
+transition: all 2s linear 2s;
+/*
+  all 所有属性
+  2s 动画持续时间
+  linear 匀速
+  2s 延迟
+
+  除了 display: none/block 属性
+  */
+  
+  ease-in-out/* 先加速后减速 */
+  ease-out /* 减速 */
+  ease-in /* 加速 */
+  ease /* 逐渐减速 */
+  linear /* 默认匀速 */
+  属性
+  cubic-bezier(.33,1.2,.83,.67)
+  https://cubic-bezier.com/
+  ```
+
+### 2d-平移
+
+```css
+  transform: translateY(100px) translateX(100px);
+  transform: translate(100px,20px);
+/* 上面的写法可简化为下面的写法 */
+/*
+ translateX 正值向右，负值向左
+ translateY 正值向下，负值向上
+ 两个属性可同时使用
+ */
+ ```
+
+### position与transform属性
+
+设置left属性会频繁的造成浏览器回流重排，而transform和opacity属性不会，因为它是作为合成图层发送到GPU上，由显卡执行的渲染，这样做的优化如下。可以通过亚像素精度得到一个运行在特殊优化过的单位图形任务上的平滑动画,并且运行非常快。动画不再绑定到CPU重排，而是通过GPU合成图像。即使运行一个非常复杂的JavaScript任务，动画仍然会很快运行。
+
+### scale
+
+```css
+transform: scale(-1.5);
+/*
+    性能较好，从中心放大
+    设置缩放的倍数
+  若设置为负值则倒向
+  支持x轴，y轴单独放大的效果
+  scaleX
+  scaleY
+
+  */
+  
+  transform: rotate(10deg);
+/*
+正值为顺时针方向
+负值为逆时针方向
+ */
+ transform,可支持多个属性，但要注意使用的先后顺序
+ transform-origin: left top;
+ /*  改变旋转中心位置，绕左上角旋转  */
+/*
+正值为顺时针方向
+负值为逆时针方向
+
+绕X轴或Y轴
+
+rotateZ === rotate 中心
+ */
+ ```
+
+## JS
+
+空类型：Undefined Null
+使用typeof关键字来进行数据类型检测
+语法:typeof 要检测的变量
+结果:该变量存储的数据的数据类型
+
+### 转数值
+
+1.Number();
+
+语法:Number(要转换的内容)
+
+结果:转换好数值类型的结果
+
+2.parseInt();
+
+语法:parseInt(要转换的内容)
+
+结果:转换好数值类型的结果
+
+3.parseFloat();
+
+语法:parseFloat(要转换的内容)
+
+结果:转换好数值类型的结果
+
+两者的区别：Number只要有不是数字的就出现NaN，parseInt会把前面的数字转化出来，只有当第一位就不是数字
+时才转化为NaN,parseFloat与parseInt一致，但parseFloat可以显示小数
+
+### 转字符串
+
+1.String();
+
+语法:String(要转换的内容)
+
+结果:转换好字符串类型的结果
+
+2. toString();
+
+语法:要转换的内容.toString()
+
+结果:转换好字符串类型的结果
+### 转布尔
+
+1.Boolean();
+
+语法:要转换的内容.Boolean()
+
+结果:转换好布尔类型的结果
+
+>注释：false:  0 NaN '' undefined null
+其他都转换为true
+### 赋值运算符
+
+= ：进行值操作
+
++= ：加等于运算符
+
+-=  ：减等于运算符
+
+*= ：乘等于运算符
+
+/= ：除等于运算符
+
+%= ：取余等于运算符
+
+### 比较运算符
+
+>︰大于比较
+
+< ：小于比较
+
+>= ：大于等于
+
+<= ：小于等于
+
+== ：等于
+
+**== ： 只比较值是否相等，不考虑数据类型**
+
+=== ：全等于
+
+**=== ： 值和数据类型都相等才等于**
+
+!= ： 不等于比较不考虑数据类型
