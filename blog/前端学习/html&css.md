@@ -1502,89 +1502,135 @@ rotateZ === rotate 中心
  */
  ```
 
-## JS
+### 倾斜
 
-空类型：Undefined Null
-使用typeof关键字来进行数据类型检测
-语法:typeof 要检测的变量
-结果:该变量存储的数据的数据类型
+```css
+transform: skew(30deg,30deg);
+/*  skewX原来正的正方形拽着右下角向右拖动了30度
+      -30deg原来正的正方形拽着左下角向左拖动了-30度
+      skewY原来正的正方形拽着右下角向下拖动了30度
+      -30deg原来正的正方形拽着左下角向下拖动了-30度
+      skew 正值，拽右下角，向右下边拉动，形成30deg
+  */
+```
 
-### 转数值
+### 关键帧动画animation
 
-1.Number();
+```css
+    animation: identifier1 1s linear ;
+/*  关键帧属性
+  infinite 无限次执行,默认只执行一次，当然也可通过数字直接设置动画次数
+  */
+}
+/* 声明一个动画 */
+@keyframes identifier1 {
+    from{
+        width: 200px;
+        height: 200px;
+        background: red;
+    }
 
-语法:Number(要转换的内容)
+    to{
+        width: 400px;
+        height: 400px;
+        background: plum;
+    }
+}
+@keyframes identifier2 {
+0%{
+    width: 200px;
+    height: 200px;
+    background: red;
+}
+25%{
+    width: 200px;
+    height: 400px;
+    background: yellow;
+}
+50%{
+    width: 400px;
+    height: 200px;
+    background: green;
+}
+75%{
+    width: 200px;
+    height: 400px;
+    background: purple;
+}
+100%{
+    width: 400px;
+    height: 400px;
+    background: plum;
+}
+}
+```
 
-结果:转换好数值类型的结果
+#### animation的一些属性
 
-2.parseInt();
+```css
+div{
+      transform: translateX(-100%);
+    /* 100%是相对于盒子自身的100% */
+      animation: run 1s linear forwards reverse;
+      /*animation-fill-mode: forwards;*/
+    /*
+        保留动画最后状态的属性
+        none 初始默认
+        forwards 保留动画最后一帧
+        backwards 保留动画第一帧
+     */
+     }
+ ```
 
-语法:parseInt(要转换的内容)
+#### animation单一属性
 
-结果:转换好数值类型的结果
+```css
+div{
+      animation-name: identifier2;
+      animation-duration: 10s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-play-state: running;
+    /* 运动或暂停，配合hover使用 */
+      animation-direction: alternate-reverse;
+    /*
+     动画运行方向：
+     reverse 反方向
+     normal 正常方向
+     alternate 由正常方向开始两个方向交替进行
+     alternate-reverse 由反方向开始两个方向交替进行
+     */
+    }
+    div:hover{
+      animation-play-state: paused;
+    }
+```
 
-3.parseFloat();
+#### animation案例记录
 
-语法:parseFloat(要转换的内容)
+1、 轮播图
 
-结果:转换好数值类型的结果
+为了实现无缝隙轮播，第一份图片和最后一份是一样的 
 
-两者的区别：Number只要有不是数字的就出现NaN，parseInt会把前面的数字转化出来，只有当第一位就不是数字
-时才转化为NaN,parseFloat与parseInt一致，但parseFloat可以显示小数
+2、 逐帧动画
 
-### 转字符串
+```css
+div{
+animation: run 5s steps(100,start);}
+/*  end 保留当前帧，看不到最后一帧，动画结束
+    start  保留下一帧，看不到第一帧，从第一镇很快跳到最后一帧
+*/
+```
 
-1.String();
+>注：由于几乎看不到最后一帧，故将最后一帧设为空白，以实现无缝衔接和动画流畅
 
-语法:String(要转换的内容)
+3、引用css动画效果网站
 
-结果:转换好字符串类型的结果
+```html
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
+ ```
 
-2. toString();
+>附：原网站网址：https://animate.style/
 
-语法:要转换的内容.toString()
 
-结果:转换好字符串类型的结果
-### 转布尔
-
-1.Boolean();
-
-语法:要转换的内容.Boolean()
-
-结果:转换好布尔类型的结果
-
->注释：false:  0 NaN '' undefined null
-其他都转换为true
-### 赋值运算符
-
-= ：进行值操作
-
-+= ：加等于运算符
-
--=  ：减等于运算符
-
-*= ：乘等于运算符
-
-/= ：除等于运算符
-
-%= ：取余等于运算符
-
-### 比较运算符
-
->︰大于比较
-
-< ：小于比较
-
->= ：大于等于
-
-<= ：小于等于
-
-== ：等于
-
-**== ： 只比较值是否相等，不考虑数据类型**
-
-=== ：全等于
-
-**=== ： 值和数据类型都相等才等于**
-
-!= ： 不等于比较不考虑数据类型
