@@ -1633,4 +1633,38 @@ animation: run 5s steps(100,start);}
 
 >附：原网站网址：https://animate.style/
 
+### 3d
+
+搭建3d舞台
+```css
+transform-style: preserve-3d;
+    /*
+        flat: 2d舞台
+        preserve-3d：3d舞台 */
+perspective: 900px;
+/* 设置景深，即眼睛与屏幕的距离，不设置看不出近大远小 */
+
+```
+
+#### 3d-平移
+
+```css
+transform: translateZ(100px);
+transform: translateX(100px);
+transform: translateY(100px);
+transform: translate3d(0,0,200px);
+/* 分别对应x,y,z */
+/* 正值近，负值远 */
+```
+
+#### 3d-旋转
+
+```css
+transform: rotateX(30deg);
+transform: rotateY(30deg);
+transform: rotateZ(30deg);
+transform: rotate3d(1,1,1,30deg);
+/*  x,y,z转30deg,前面的数字表示倍数  */
+```
+
 
