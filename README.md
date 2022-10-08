@@ -10,3 +10,5 @@
 ## 前端学习
 
 1、[html笔记](/blog/前端学习/html&css.md)
+
+2、[js笔记](/blog/前端学习/js.md)
