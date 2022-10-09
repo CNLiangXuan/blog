@@ -1671,6 +1671,7 @@ transform: rotate3d(1,1,1,30deg);
 
 ```css
 div{
+  /* 以网格显示 */
 display: inline-grid;
 /* grid; 块级网格
 inline-grid; 行内块级网格
@@ -1703,3 +1704,69 @@ grid-template-columns: 100px 200px auto;
 grid-template-rows: auto 100px 200px;
   }
 ```
+
+#### 合并网格
+
+```css
+grid-template-areas: 'a e e'
+                      'd e e'
+                      'g h i';
+/*  占据相同空间的起相同的项目名称，占据的区域形状只能为长方形或正方形  */
+       .box div:nth-child(1){
+            grid-area: a;
+        }
+       .box div:nth-child(5){
+            grid-area: e;
+        }
+```
+
+#### 网格行列间距
+
+```css
+     /* grid-row-gap: 20px;
+      grid-column-gap: 20px; */
+      /* 控制列间距与行间距，可简写为下面的写法 */
+      /*grid-gap: 20px 20px;*/
+      gap: 20px 20px;
+```
+
+#### 网格-对齐
+
+```css
+      /*grid-auto-flow: column;
+      改变顺序方向
+      */
+      /*      justify-content: center;
+      align-content: center;*/
+    /* 简写 */
+      place-content: center center;
+    /* 与弹性盒类似，控制主轴和侧轴方向 */
+/*      justify-items: center;
+      align-items: center;*/
+      /* 简写 */
+      place-items: center center;
+    /* 设置每个项目中的位置 */
+        .box div{
+      border: 1px solid green;
+      width: 50px;
+      height: 50px;
+    /* 通过宽高设置小盒子在网格中所占大小 */
+    }
+```
+
+#### 网格-项目属性
+
+```css
+        .box div:nth-child(1){
+          grid-column-start: 1;
+          grid-column-end: 3;
+        /* 这样是横跨两列 */
+          grid-row-start: 1;
+          grid-row-end: 3;
+        /* 横跨两行 */
+
+        }
+```
+
+
+
