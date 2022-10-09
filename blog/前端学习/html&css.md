@@ -1667,4 +1667,39 @@ transform: rotate3d(1,1,1,30deg);
 /*  x,y,z转30deg,前面的数字表示倍数  */
 ```
 
-### 
+### 网格布局
+
+```css
+div{
+display: inline-grid;
+/* grid; 块级网格
+inline-grid; 行内块级网格
+*/
+
+/* 固定值方式 */
+grid-template-rows: 200px 200px 200px;
+grid-template-columns: 200px 200px 200px;
+
+/* 百分比方式 */
+grid-template-columns: 33.3% 33.3% 33.3%;
+grid-template-rows: 33.3% 33.3% 33.3%;
+
+/* repeat函数，重复后面的几次
+auto-fill 可自动分好固定的份数，后面可填px和百分比
+*/
+grid-template-rows: repeat(auto-fill,25%);
+grid-template-columns: repeat(auto-fill,33.3%);
+
+/* fr片段 与flex类似*/     
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: 1fr 2fr 1fr;
+
+/* 6.minmax */
+grid-template-rows: minmax(100px,200px) 200px 400px;
+grid-template-columns: 200px 200px 200px;看不太懂这个
+
+/* auto */
+grid-template-columns: 100px 200px auto;
+grid-template-rows: auto 100px 200px;
+  }
+```
