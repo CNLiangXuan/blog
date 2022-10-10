@@ -471,3 +471,77 @@ behavior: 'smooth'})
 ```
 
 返回值为1和2，返回值只表示返回第几个定时器，与定时器种类无关
+
+#### 关闭定时器
+
+语法一: clearInterval(要关闭的定时器返回值)
+
+语法二: clearTimeout(要关闭的定时器返回值)
+
+### DOM基本操作
+
+#### 获取元素的方式
+
+**根据id名称获取**
+
+语法: document.getElementById( 'id名称’)
+
+作用:获取文档流中id名对应的一个元素
+
+返回值:如果有id 对应的元素，就是这个元素如果没有id 对应的元素，就是null
+
+```js
+<div>一号</div>
+<div class="box content">二号</div>
+<div class="box" id="container">三号</div>
+<script>
+  const ele = document.getElementById('container')
+  console.log(ele)
+</script>
+```
+
+**根据元素类名获取**
+
+语法:document.getElementsByClassName( '元素类名’)
+
+作用:获取文档流中所有类名对应的元素
+
+返回值∶必然是一个**伪数组**如果有类名对应的元素，有多少获取多少如果没有类名对应的元素,空的伪数组
+
+**根据元素标签名获取**
+
+语法: document.getElementsByTagName(‘标签名')
+
+作用:获取文档流中所有标签名对应的元素
+
+返回值:必然是一个伪数组如果有标签名对应的元素，有多少获取多少如果没有标签名对应的元素,空的伪数组
+
+**根据选择器获取一个**
+
+语法: document.querySelector(‘选择器’)
+
+作用:获取文档流中满足选择器规则的**第一个**元素
+
+返回值:如果有选择器对应的元素，获取到第一个。如果没有选择器对应的元素，null
+
+**根据选择器获取一组**
+
+语法: document.querySelectorAll('选择器')
+
+作用:获取文档流中所有满足选择器规则的元素
+
+返回值:必然是一个伪数组，如果有选择器对应的元素，有多少获取多少；如果没有选择器对应的元素，空的伪数组
+
+#### 操作元素内容
+
+**操作元素文本内容**
+
+获取︰元素.innerText
+
+设置:元素.innerText = '新内容'
+
+**操作元素超文本内容**
+ 
+获取:元素.innerHTML
+
+设置:元素.innerHTML ='新内容'
