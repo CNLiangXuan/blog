@@ -448,6 +448,26 @@ behavior: 'smooth'})
 
 时间∶单位是毫秒
 
+```js
+    setInterval(function (){
+      console.log('执行一次')
+    },1000)
+  //  一千毫秒执行一次
+```
+
 **延时定时器**
 
 在固定的时间(毫秒)后指定一次代码
+
+#### 定时器返回值
+
+```js
+    const timer1 = setTimeout(function (){},1000)
+    const timer2 = setInterval(function (){},1000)
+
+  //  输出返回值
+    console.log('timer1: ',timer1)
+    console.log('timer2: ',timer2)
+```
+
+返回值为1和2，返回值只表示返回第几个定时器，与定时器种类无关
