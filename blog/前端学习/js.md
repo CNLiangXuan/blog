@@ -545,3 +545,19 @@ behavior: 'smooth'})
 获取:元素.innerHTML
 
 设置:元素.innerHTML ='新内容'
+
+#### 操作元素属性
+
+**原生属性**
+
+获取:元素,属性名
+
+设置:元素.属性名='属性值'
+
+**自定义属性**
+
+获取:元素.getAttribute('属性名’)
+
+设置:元素.setAttribute('属性名'，'属性值’)
+
+删除∶元素.removeAttribute('属性名')
