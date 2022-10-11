@@ -578,3 +578,15 @@ behavior: 'smooth'})
   //  点击按钮，自定义属性被删除
   }
 ```
+
+#### 操作元素类名
+
+获取︰元素.className
+
+设置︰元素.className = '新类名'
+
+```js
+<div class="content">div 标签</div>
+ box.className = 'box'
+ ```
+ 
