@@ -561,3 +561,20 @@ behavior: 'smooth'})
 设置:元素.setAttribute('属性名'，'属性值’)
 
 删除∶元素.removeAttribute('属性名')
+
+```js
+<button>操作属性</button>
+<div id="box" hello="world">div 标签</div>
+  const res = box.getAttribute('hello')
+    //  获取自定义属性值
+
+    btn.onclick = function (){
+    box.setAttribute('hello','新来的')
+  //  点击按钮，自定义属性变为新来的
+  }
+
+      btn.onclick = function (){
+    box.removeAttribute('hello')
+  //  点击按钮，自定义属性被删除
+  }
+```
