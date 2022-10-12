@@ -590,3 +590,37 @@ behavior: 'smooth'})
  box.className = 'box'
  ```
  
+ #### 操作元素行内样式
+
+获取︰元素.style.样式名
+
+设置︰元素.style.样式名='样式值'
+
+```js
+background-color ---backgroundColor
+  console.log(box.style.backgroundColor)
+//  在js中获取一些带中划线的属性时，需要改成驼峰命名法
+```
+
+#### 获取元素非行内样式
+
+获取: window.getComputedStyle(元素).样式名
+
+注意︰可以获取行内样式，也可以获取非行内样式
+
+### 事件绑定
+
+**事件绑定的三要素**
+
+1.事件源:和谁做好约定
+
+2.事件类型:约定一个什么行为
+
+3.事件处理函数:当用户触发该行为的时候，执行什么代码
+
+语法:
+
+事件源.on事件类型=事件处理函数
+
+事件源.on事件类型=事件处理函数就可以了
+
