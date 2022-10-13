@@ -434,6 +434,7 @@ left, top )
 left: XX,
 top: yy,
 behavior: 'smooth'})
+// 方法2应该较为平滑
 ```
 
 ### 定时器
@@ -577,6 +578,8 @@ behavior: 'smooth'})
     box.removeAttribute('hello')
   //  点击按钮，自定义属性被删除
   }
+  type = allBtn.checked
+  获取到布尔类型的返回值
 ```
 
 #### 操作元素类名
