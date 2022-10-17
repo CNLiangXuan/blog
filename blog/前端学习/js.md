@@ -787,5 +787,100 @@ tagName：准确点击的元素
 
 =>可以向函数一样传递参数，可以给每一个对象添加一些不同的内容
 
-+这个“机器”要生产有属性有方法的合理的对象
+=>当你需要完成一个功能的时候,我们先制造一个构造函数
 
+-> 利用构造函数去创建一个可以完成任务的对象
+
+->依赖这个对象完成功能
+
++这个“机器”(构造函数)要生产有属性有方法的合理的对象
+
+```js
+<!-- 创建对象的方式
+    1。字面量方式创建对象
+    var obj = {i ..。}可以后期动态添加
+
+    2.内置构造函数创建对象
+    +var obj = new Object()+可以后期动态添加
+
+    1.2方法均不好批量创建
+
+    3。工厂函数创建对象
+
+    3-1。制造一个工厂函数
+    3-2。使用工厂函数去创建对象
+
+    4。自定义构造函数创建对象
+    4-1。制造一个自定义构造函数
+    4-2。使用自定义构造函数去创建对象
+
+<!-- 1。字面量方式创建对象 -->
+    const obj = {
+        name: 'Jack',
+        age: 18,
+        sayHi: function () {
+            console.log('Hello world')
+        }
+    }
+    //如果我想创建第二个对象
+    const obj2 = {
+        name: 'Rose',
+        age: 20,
+        sayHi: function () {
+            console.log('Hello world')
+        }
+    }
+
+    //2.内置构造函数创建对象
+const obj = new Object()
+obj.name = 'Jack'
+obj.age = 18
+obj.sayHi = function (){  console.log('hello world')  }
+
+// 3。工厂函数创建对象
+function createObj(name,age){
+    const obj ={}
+//    手动向里面添加属性
+    obj.name = name
+    obj.age = age
+    obj.sayHi = function (){  console.log('Hello world')  }
+    return obj
+}
+
+//  使用工厂函数去创建对象
+const obj1 = createObj('Jack',18)
+const obj2 = createObj('Rose',20)
+console.log(obj1,obj2)
+
+// 4。自定义构造函数创建对象
+// 4-1。制造一个自定义构造函数
+//构造函数会自动创建对象，自动返回这个对象
+// 我们只需要手动想里面添加内容就可以了
+
+function CreateObj(name,age){
+//自动创建对象
+
+//    手动向对象里添加成员
+//    这里的 this 指向当前实例（new 前面的变量）
+    this.name = name
+    this.age = age
+    this.sayHi = function (){  console.log('hello world')  }
+//    自动返回对象
+}
+// 4-2。使用自定义构造函数去创建对象
+//构造函数在使用的时候,需要和 new关键字连用
+// 如果不连用，那么没有意义
+//第一次调用createobj的时候，和new关键字连用了
+// 我们createobj里面的this指向了obj1I
+//函数内部的代码在执行的时候，就是在向 obj1添加了name age和 sayHi 三个成员
+
+const obj1 =new CreateObj('Jack',18)
+//第二次调用createobj 的时候,和new关键字连用了
+//我们的createobj里面的this指向了obj2
+//函数内部的代码在执行的时候，就是在向 obj2添加了name age 和 sayHi三个成员
+
+const obj2 =new CreateObj('Rose',20)
+console.log(obj1,obj2)
+ -->
+
+>第四种方法最佳，构造函数会自动创建对象，自动返回这个对象， 我们只需要手动想里面添加内容就可以了
