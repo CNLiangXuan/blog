@@ -1062,6 +1062,101 @@ console.log(obj1,obj2)
 
 const定义常量，let定义局部变量，var全局变量
 
+#### 箭头函数的特殊之处
+
+1.只有一个形参的时候可以省略()不写
+
+2.当你的代码只有一句化的时候，可以不写{}，并且会自动把这一句话的结果当作函数的返回值
+
+3.箭头函数没有arguments
+
+4.箭头函数内没有this,箭头函数内的this 就是外部的this
+
+#### 函数的参数默认值
+
+```js
+  function fn(a = 60, b = 200){
+    console.log('a: ',a)
+    console.log('b: ',b)
+    console.log('------------------')
+  }
+```
+a = 60, b = 200,为函数参数默认值，调用函数时，若实参传入使用默认值
+
+#### 解构赋值
+
+**解构数组**
+
+```js
+  const arr = ['hello','world']
+  const [a,b] = arr
+  console.log(a)
+  console.log(b)
+  按照索引值对应解构
+```
+
+**解构对象**
+
+```js
+let obj =  {  name: 'Jack',age: 18 }
+//  表示定义了两个变量，一个obj里的name,一个obj里的age
+let {name,age} = obj
+console.log(name,age)
+
+let obj = {name: 'Jack',age: 18}
+  //将obj对象中的age重命名为a
+  let {age: a} = obj
+```
+
+#### 模板字符串
+
+```js
+模板字符串
++其实，就是ES6内新增的定义字符串的方式
++以前:
+=>var str ='内容'
+=>var str ="内容"
++现在:
+=>var str =`内容`
+区别：
+1.可以换行书写,并且保留换行
+2。可以直接在字符串内解析变量
+=>当你需要解析变量的时候，直接书写${变量}
+
+```
+
+#### 展开运算符
+
+```js
+//作用1：合并数组
+let arr1 = [10, 20]
+let arr2 = [30, 40]
+let arr3 = [50, 60, 70]
+let arr4 = [80, 90]
+//合并
+const arr5 = [...arr1, ...arr2, ...arr3, ...arr4]
+console.log(arr5)
+console.log(...arr5)
+
+//作用二：给函数传递参数
+
+let arr1 = [10, 20, 30, 5, 3, 31, 89, 2]
+let max = Math.max(10, 20, 30, 5, 3, 31, 89, 2)
+console.log(max)
+let max2 = Math.max(...arr1)
+console.log(max2)
+
+//作用3：用来赋值对象
+//注意：展开书写的顺序问题，在有想相同成员的时候,后面的会覆盖前面的
+let obj2 = {
+  gender: '男',
+  name: 'Rose',
+  ...obj
+
+}
+
+```
+
 ### argument对象
 
 arguments 是一个对应于传递给函数的参数的类数组对象。 “类数组”意味着 arguments 有 长度 属性 并且属性的索引是从零开始的，但是它没有 Array的内置方法，例如 forEach() 和 map()都是没有的。
