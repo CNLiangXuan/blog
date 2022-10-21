@@ -1157,6 +1157,31 @@ let obj2 = {
 
 ```
 
+#### 类语法
+
+```js
+ES6的类语法：
+class 类名 {
+//原先ES5 内的构造体函数
+constructor () {}
+// 直接书写原型上的方法即可
+//书写静态属性和方法，需要加上一个static关键字
+}
+注意：必须和new关键字连用，不连用会直接报错
+
+
+//类的书写
+class Person {
+  constructor(name, age) {
+  //  这里按照 ES 5的构造函数体书写
+    this.name = name
+    this.age = age
+  }
+//  直接书写原型上的方法即可
+  sayHi () {  console.log('hello world')  }
+}
+```
+
 ### argument对象
 
 arguments 是一个对应于传递给函数的参数的类数组对象。 “类数组”意味着 arguments 有 长度 属性 并且属性的索引是从零开始的，但是它没有 Array的内置方法，例如 forEach() 和 map()都是没有的。
