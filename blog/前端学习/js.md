@@ -1185,3 +1185,28 @@ class Person {
 ### argument对象
 
 arguments 是一个对应于传递给函数的参数的类数组对象。 “类数组”意味着 arguments 有 长度 属性 并且属性的索引是从零开始的，但是它没有 Array的内置方法，例如 forEach() 和 map()都是没有的。
+
+### 前后端交互
+
+#### Ajax前后端交互方法
+
+```js
+1．创建ajax 对象
+var xhr = new XMLHttpRequest()
+
+2。配置本次请求信息
+xhr.open(请求方式，请求地址，是否异步)
+
+3．注册请求完成事件
+xhr.onload = function (){}
+
+4。把请求发送出去
+xhr.send()
+
+var xhr = new XMLHttpRequest()
+xhr.open( 'GET',‘xxx', true)
+xhr.onload = function (){
+console.log(‘请求完成’)
+}
+xhr.send()
+```

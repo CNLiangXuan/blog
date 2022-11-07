@@ -1769,5 +1769,52 @@ grid-template-areas: 'a e e'
         }
 ```
 
+## BootStap
 
+**BootStap安装**
 
+第一种方式:
+
+直接引入文件的方式（用CDN的地址
+
+CSS: "https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+JS:
+https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
+https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+
+第二种方式:
+模块化的包管理的方式npm install bootstrap
+
+**布局**
+
+口布局容器
+
+Bootstrap需要为页面内容和栅格系统包裹一个.container容器。框架中提供了两个类。
+
+**.container类**   用于固定宽度并支持响应式布局的容器
+```css
+<div class="container">
+…
+</div>
+```
+**.container-fluid类**  用于100%宽度，占据全部视口(viewport)的容器。
+
+```css
+<div class="container-fluid">
+</div>
+```
+
+**栅格使用**
+
+```css
+<div class="container">
+<div class="row">
+    <div class="col-md-8">8</div>
+
+    <div class="col-md-4">4</div>
+
+</div>
+<div>
+```
+
+row为一行，col一列，8占一行中的8格，一行栅格被分为8份
