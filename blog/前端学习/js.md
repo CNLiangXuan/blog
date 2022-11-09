@@ -1210,3 +1210,20 @@ console.log(‘请求完成’)
 }
 xhr.send()
 ```
+
+### integrity属性
+
+script使用integrity属性进行安全验证
+script标签引入文件integrity安全验证
+
+integrity属性设置引入js文件的hash值，浏览器在下载js文件时候，会对js文件进行hash计算，如果一致则正常加载，否则拒绝加载运行。
+
+**可以通过 https://www.srihash.org/ 生成hash值。**
+
+```html
+<script src="https://unpkg.com/vue@3.0.5/dist/vue.global.js"
+    integrity="sha384-0k9//QJdpmfSdp5IK3oJjOYPfz42f2FE0goMLtK9Vq7aKllvc4Lnz7lHPHiFhvDP"
+    crossorigin="anonymous">
+</script>
+```
+
