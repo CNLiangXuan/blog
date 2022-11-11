@@ -1237,3 +1237,52 @@ integrity属性设置引入js文件的hash值，浏览器在下载js文件时候
 </script>
 ```
 
+## jQuery
+
+### jQuery选择器
+
+```js
+<!-- 注意：不管使用任何选择器，获取到的元素都是一个元素的集合 -->
+//  id选择器
+console.log($('#box'))
+//  类名选择器
+console.log($('.a'))
+//  标签名选择器
+console.log($('li'))
+//  结构选择器
+console.log($('li:nth-child(odd)'))
+```
+
+#### jQuery筛选器
+
+语法: $(‘选择器’).筛选器名称()
+
+```js
+    console.log($('li').last())
+    console.log($('li').first())
+
+    //eq(索引)
+    //注意：索引从0开始，一次+1
+    console.log($('li').eq(3))
+    //4.next()
+    console.log($('span').next())
+    //5.nextAll()
+    console.log($('span').nextAll())
+    //6.prev()
+    console.log($('span').prev())
+    // 7.prevAll()前面所有
+    console.log($('span').prevAll())
+
+    //8.parent()获取父元素
+    console.log($('span').parent())
+
+    //9.parents()逐层获取所有父元素结构，知道获取到html
+    console.log($('span').parents())
+
+    //10.拿到该元素的所有兄弟元素
+    console.log($('li').siblings())
+
+//    11.find()在所有后代元素中查找该元素
+    console.log($('ul').find('i'))
+```
+
