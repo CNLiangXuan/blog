@@ -1274,7 +1274,7 @@ console.log($('li:nth-child(odd)'))
     console.log($('span').prevAll())
 
     //8.parent()获取父元素
-    console.log($('span').parent())
+    console.log($('span').parent()) 
 
     //9.parents()逐层获取所有父元素结构，知道获取到html
     console.log($('span').parents())
@@ -1285,4 +1285,292 @@ console.log($('li:nth-child(odd)'))
 //    11.find()在所有后代元素中查找该元素
     console.log($('ul').find('i'))
 ```
+#### 操作文本内容
+
+```js
+  1.html()
+  等价于我们原生js中的innerHTM
+  1-1.html()获取，读取标签
+  console.log($('div').html())
+
+  1-2. html()设置
+  语法:元素集合.html(你要设置的内容)
+ 可以识别并解析html字符串,可创建标签
+$('div').html('<h2>我是后来设置的内容</h2>')
+
+  2.text()
+  等价于我们原生JS中的innerText
+  2-1.text()获取，不会读到标签
+console.log($('div').text())
+
+  2-2.text()设置
+  语法:元素集合.text(你要设置的内容)
+  注意:不可以识别并解析html结构字符串，不可创建标签
+  console.log($('div').text('<h2>我是后来设置的内容</h2>'))
+
+  3.val()
+  等价于我们原生JS 中value
+  3-1.val()获取
+  console.log($('input').val())
+
+  3-2.val()设置
+  语法:元素集合。val(你要设置的内容)
+  作用:用来设置该表单元素的 value 值
+  console.log($('input').val('你好世界'))
+```
+
+#### 操作元素类名
+
+```js
+1. addclass()
+  语法:元素集合.addclass(需要添加的类名)
+$('div').addClass('e')
+
+2.removeclass()
+语法:元素集合.removeclass(你要删除的类名)
+$('div').removeClass('b')
+
+3.toggleclass()
+语法:元素集合.toggleclass(你要切换的类名)
+切换:如果本身有这个类名，那么就是删除，如果本身没有这个类名，那么就是添加
+const btn = document.querySelector('button')
+btn.onclick = function (){
+  $('div').toggleClass('box')
+}
+```
+
+#### 操作元素样式方法
+
+``` js
+// 1.css获取样式
+// 注意:可以获取到元素的行内样式，也可以获取到元素的非行内样式
+// 语法:元素集合.css(你要获取的样式名称)
+// 返回值:该样式的样式值
+console.log($('div').css('width'))
+console.log($('div').css('height'))
+console.log($('div').css('background-color'))
+
+// 2.css设置样式
+// 语法:元素集合.css(样式名，样式值)
+// 注意:当你需要给一个元素设置样式值为px单位的时候，可以省略单位不写
+console.log($('div').css('width',300))
+console.log($('div').css('background-color','green'))
+
+// 3。css批量设置样式
+// 语法:元素集合.css({你所有需要设置的样式})
+$('div').css({
+    width:260,
+    height:320,
+    opacity:0.68,
+    'background-color':'pink'
+})
+```
+
+#### 操作元素属性
+
+```js
+// 1。attr()
+// =>可以进行设置和获取元素的属性
+// =>注意:一般用于操作元素的自定义属性
+// =>注意:attr操作的所有属性都会直接出现在元素的标签身上
+// =>获取:
+//  ->语法:元素.attr(你要获取的属性名)
+//  ->返回值:该属性名对应的属性值
+// 2.removeAttr()
+// =>对元素的属性进行删除操作
+//         =>语法:元素集合.removeAttr(你要删除的属性名)
+
+//1-1.attr() 获取
+// console.log($('div').attr('hello'))
+// console.log($('div').attr('id'))
+
+//1-2.attr() 设置
+// $('div').attr('a',100)
+// $('div').attr('id','container')
+
+/*
+    1.prop()
+    +可以获取和设置元素的属性+注意:
+    =>当prop设置元素的原生属性，会直接响应在元素标签身上
+    =>当prop设置元素自定义属性，不会直接响应在元素标签身上,会响应在元素对象身上
+    +注意:prop方法不能获取元素标签身上的自定义属性，只能获取prop方法自己设置的自定义属性
+    +prop(）设置
+    =>语法:元素集合.prop(属性名，属性值)
+    +prop(）获取
+    =>语法:元素集合.prop(你要获取的属性名)
+    =>返回值:该属性对应的值
+
+    2.removeProp()
+    +用来删除元素属性的方法+注意:
+    =>不能删除原生属性
+    =>只能删除由prop方法设置的自定义属性
+    +语法:元素集合。removeProp(你要删除的属性名)
+
+
+    */
+let div_prop = $('div')
+//1-1 prop(）设置
+div_prop.prop('id','container')
+div_prop.prop('a',100)
+console.log(div_prop.prop('id'))
+console.log(div_prop.prop('hello'))
+console.log(div_prop.prop('a'))
+
+div_prop.removeProp('id')
+//不能删除原生属性
+div_prop.removeProp('a')
+//删除自定义属性
+console.log(div_prop.prop('a'))
+
+```
+
+#### 获取元素的尺寸
+
+```js
+/*注意：
+  * 1.不管该元素是否隐藏，都能获取到该元素的值
+  * 2.不管盒子模型是什么状态，拿到的尺寸区域不变
+
+  * */
+  //1.width()和height()
+  //获取到的就是元素内容区域的尺寸
+  $('div').width()
+  $('div').height()
+
+  //2.innerHeight()和innerWidth()，获取到边框内的内容
+  console.log($('div').innerHeight())
+  console.log($('div').innerWidth())
+
+ // 3.outerWidth()和outerHeight()，获取到包括边框的尺寸
+ console.log($('div').outerWidth())
+ console.log($('div').outerHeight())
+
+//4.outerWidth(true)和outerHeight(true)拿到的包含你设置的margin尺寸值
+  console.log($('div').outerWidth(true))
+  console.log($('div').outerHeight(true))
+
+```
+
+#### 获取元素偏移量
+
+```js
+    /*  1.offset()
+      获取元素相对于页面左上角的坐标位置
+      注意:返回值是一个对象数据类型，{ top: yyy, left: xxx }*/
+
+    console.log('div: ',$('div').offset())
+    console.log('p: ',$('p').offset())
+    console.log('span: ',$('span').offset())
+
+    // 2.position()
+    //获取元素定位
+    //注意:如果你设置的是 right和 bottom，会自动帮你换算成left和top 的值给到你
+    console.log($('span').position())
+```
+## mock
+
+### 安装
+
+在安装node.js的基础上，在终端中输入npm install mockjs
+
+导入:var Mock =require ( 'mockjs ')
+
+使用:var data = Mock.mock ( {....} )    
+
+//data为虚拟的数据
+
+### Mock.js的语法规范
+
+Mock.js的语法规范包括两部分:
+
+#### 1.数据模板定义规范(Data Template Definition，DTD)
+
+数据模板中的每个属性由3部分构成:属性名(name)、生成规则(rule)、属性值(value):
+
+```'name|rule':value```
+
+**属性值是字符串 String**
+
+```
+1. 'namelmin-max': string
+
+通过重复string生成一个字符串,重复次数大于等于min,小于等于max。
+
+2.'name|count: string
+
+通过重复string 生成一个字符串,重复次数等于count。
+```
+
+**属性值是数字Number**
+
+1.'name/min-max': number
+
+生成一个大于等于min、小于等于max的整数，属性值number只是用来确定类型。
+
+#### 2.数据占位符定义规范（Data Placeholder Definition，DPD)
+
+占位符只是在属性值字符串中占个位置，并不出现在最终的属性值中
+
+```
+@占位符
+@占位符(参数[,参数])
+```
+
+```
+@id():得到随机的id
+@cname():随机生成中文名字
+@date('yyyy-MM-dd'):随机生成日期
+@paragraph():描述
+@email():邮箱地址
+```
+
+jQuery与mock运用模板
+
+```js
+if (MOCK === 'true'){
+    var data = Mock.mock('/user/userInfo', 'get', {
+        id: "@id()", //得到随机的id
+        username: "@cname()", //随机生成中文名字
+        date: "@date()", //随机生成日期
+        avator: "@image('200x200','#50B347','#fff','avatar')", //生成图片，参数：size,background,foreground,text
+        description: "@paragraph()", //描述
+        ip: "@ip()", //IP地址
+        email: "@email()" //email
+    })
+    console.log(data)
+}
+```
+```html
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/Mock.js/1.0.0/mock-min.js"></script>
+</head>
+
+<body>
+<script> MOCK = 'true'</script>
+<script src="mock/index.js"></script>
+<script>
+    $.ajax({
+        url: '/user/userInfo',
+        dataType:'json',
+        success: (data) =>{
+            console.log(data)
+        }
+    })
+</script>
+
+</body>
+</html>
+```
+
+
+1.定义接口路由，在接口中并返回mock模拟的数据
+
+2.在vue.config.js中配置devServer，在before属性中引入接口路由函数
+
+3.使用axios调用该接口，获取数据
 
