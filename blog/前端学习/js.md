@@ -1595,7 +1595,6 @@ setInterval(function () {
 
 ```js
     /*
-      基本动画
       1。slideDown()显示
       2。slideUp(）隐藏
       3.slideToggle()切换
@@ -1606,6 +1605,19 @@ setInterval(function () {
           =>第二个表示运动曲线
           =>第三个表示运动结束的回调函数
     */
+$('div').slideDown(1000,'linear', function () {console.log('show结束了') })
+
+```
+
+#### 渐隐渐显动画
+
+```
+1.fadeIn()显示
+2.fadeOut(）隐藏
+3.fadeToggle()切换
+4.fadeTo(运动时间，指定的透明度，运动曲线，运动结束的回调函数)
+$('div').fadeTo(1000,0.5,'linear', function () {console.log('运动到了指定透明度')})})
+
 ```
 
 ## mock
