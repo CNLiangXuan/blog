@@ -1467,6 +1467,147 @@ console.log(div_prop.prop('a'))
     //注意:如果你设置的是 right和 bottom，会自动帮你换算成left和top 的值给到你
     console.log($('span').position())
 ```
+
+#### 事件绑定
+
+```js
+/*   
+ 1.on()方法绑定事件
+    1-1。基础绑定事件
+    语法:元素集合.on('事件类型'，事件处理函数)
+
+    1-2。事件委托绑定事件
+    语法:元素集合.on('事件类型'，选择器，事件处理函数)
+    把事件绑定给div元素，当你在div 内的p元素触发事件的时候,执行事件处理函数
+    事件委托，把p元素的事件委托给了div 元素来绑定
+    1-3。批量绑定事件
+    语法:元素集合.on({ 事件类型1:处理函数，事件类型2:处理函数})
+    注意:不能进行事件委托了
+    */
+$('div').on('click', function () { console.log('我是div的点击事件') })
+$('div').on('click','p', function () {console.log('我是委托形式的事件')})
+
+$('div').on({
+    click: function () {
+        console.log('点击事件')
+    },
+    mouseover: function () {
+        console.log('鼠标移入事件')
+    },
+    mouseout: function () {
+        console.log('鼠标移出事件')
+    }
+    }
+)
+
+// 2. one()
+// 用来绑定事件，和on方法绑定事件的方式是一样的
+// 区别:one方法绑定的事件，只能执行一次
+// 1-2。事件委托绑定事件
+// 语法:元素集合.on('事件类型'，选择器，事件处理函数)
+// 1-3。批量绑定事件
+// 语法:元素集合.on({ 事件类型1:处理函数，事件类型2:处理函数})
+// $('div').one('click', 'p', function () { console.log('事件委托') })
+// $('div').one('click', function (){console.log('基础绑定')})
+
+$('div').one({
+    click: function () {
+        console.log('点击事件')
+    },
+    mouseover: function () {
+        console.log('鼠标移入事件')
+    },
+    mouseout: function () {
+        console.log('鼠标移出事件')
+    }
+})
+
+// 3. hover()
+// 注意:jQuery里面一个特殊的事件
+// 语法:元素集合.hover(移入时触发的函数，移出时触发的函数)
+// 当你只传递一个函数的时候，会在移入移出都发,也不能做事件委托
+
+$('div').hover(
+    function () { console.log('函数1') },
+    function () { console.log('函数2') }
+)
+
+// 4。常用事件函数
+// jQuery把我们最长用到的一些事件，单独做成了事件函数我们通过调用这些事件函数，来达到绑定事件的效果
+// click()， mouseover(), mouseout(),change(),
+$('div').click(function (){ console.log('点击事件') })
+```
+
+#### 事件解绑和触发
+
+```js
+//准备事件处理函数
+function handlerA() { console.log('我是handlerA事件处理函数') }
+function handlerB() { console.log('我是handlerB事件处理函数') }
+function handlerC() { console.log('我是handlerC事件处理函数') }
+
+//  给div元素绑定事件
+  $('div')
+  .click(handlerA)
+  .click(handlerB)
+  .click(handlerC)
+
+  // 1。off()事件解绑Ⅰ
+  // 1-1。解绑全部事件处理函数
+  // 语法:元素集合.off(事件类型)
+  // 会把div 的click事件对应的所有事件处理函数全部移除
+  // 1-2。解绑指定的事件处理函数
+  // 语法:元素集合.off(事件类型，要解绑的事件处理函数)
+  // 会把div 的click事件对应的 handlerB事件处理函数移除
+   $('div').off('click',handlerB)
+
+  // 2.trigger()事件触发使用代码的方式,来触发事件
+  // 语法:元素集合.trigger(事件类型)就会触发该元素的该事件
+setInterval(function () {
+//  每1000秒触发一次div的click事件
+  $('div').trigger('click')
+},1000)
+```
+
+#### 基本动画
+
+```js
+/*
+  基本动画
+  1。show()显示
+  2.hide(）隐藏
+  3.toggle()切换
+          =>本身如果是显示的,就隐藏
+          =>本身如果是隐藏的，就显示
+  +对于以上三个运动函数,有共同的参数
+          =>第一个表示运动时间
+          =>第二个表示运动曲线
+          =>第三个表示运动结束的回调函数
+*/
+
+  $('div').show(1000,'linear', function () {console.log('show结束了') })
+  $('div').hide(1000,'linear', function () {console.log('hide结束了') })
+  $('div').toggle(1000,'linear', function () {console.log('toggle结束了') })
+
+```
+
+#### 折叠动画
+
+```js
+    /*
+      基本动画
+      1。slideDown()显示
+      2。slideUp(）隐藏
+      3.slideToggle()切换
+          =>本身如果是显示的,就隐藏
+          =>本身如果是隐藏的，就显示
+      +对于以上三个运动函数,有共同的参数
+          =>第一个表示运动时间
+          =>第二个表示运动曲线
+          =>第三个表示运动结束的回调函数
+    */
+```
+
 ## mock
 
 ### 安装
