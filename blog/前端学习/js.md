@@ -1285,7 +1285,7 @@ console.log($('li:nth-child(odd)'))
 //    11.find()在所有后代元素中查找该元素
     console.log($('ul').find('i'))
 ```
-#### 操作文本内容
+### 操作文本内容
 
 ```js
   1.html()
@@ -1319,7 +1319,7 @@ console.log($('div').text())
   console.log($('input').val('你好世界'))
 ```
 
-#### 操作元素类名
+### 操作元素类名
 
 ```js
 1. addclass()
@@ -1339,7 +1339,7 @@ btn.onclick = function (){
 }
 ```
 
-#### 操作元素样式方法
+### 操作元素样式方法
 
 ``` js
 // 1.css获取样式
@@ -1366,7 +1366,7 @@ $('div').css({
 })
 ```
 
-#### 操作元素属性
+### 操作元素属性
 
 ```js
 // 1。attr()
@@ -1424,7 +1424,7 @@ console.log(div_prop.prop('a'))
 
 ```
 
-#### 获取元素的尺寸
+### 获取元素的尺寸
 
 ```js
 /*注意：
@@ -1451,7 +1451,7 @@ console.log(div_prop.prop('a'))
 
 ```
 
-#### 获取元素偏移量
+### 获取元素偏移量
 
 ```js
     /*  1.offset()
@@ -1468,7 +1468,7 @@ console.log(div_prop.prop('a'))
     console.log($('span').position())
 ```
 
-#### 事件绑定
+### 事件绑定
 
 ```js
 /*   
@@ -1538,7 +1538,7 @@ $('div').hover(
 $('div').click(function (){ console.log('点击事件') })
 ```
 
-#### 事件解绑和触发
+### 事件解绑和触发
 
 ```js
 //准备事件处理函数
@@ -1568,6 +1568,7 @@ setInterval(function () {
   $('div').trigger('click')
 },1000)
 ```
+### 动画
 
 #### 基本动画
 
@@ -1640,6 +1641,8 @@ $('div').animate({
     'border-radius':'50%'
   },1000,'linear',function (){console.log('运动结束了')})
 ```
+
+#### 运动停止
 
 ## mock
 
