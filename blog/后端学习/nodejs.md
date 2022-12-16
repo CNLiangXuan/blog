@@ -53,6 +53,7 @@ new一个对象相当于在堆内存中开辟一个存储空间，在栈内存�
 
 **module.exports = {}**
 
+function _init()方法模块内私有，自己使用，只将想要导出的导出。
 
 ```js
 // 可被调用
@@ -72,6 +73,9 @@ exports  = {
         console.log('我是孙悟空')
     }
 }
+
+//调用别的模块
+var moduleA = require('./a')
 ```
 
 ## 包简介
@@ -94,6 +98,13 @@ CommonJS的包规范由包结构和包描述文件两个部分组成。
 
 ## NPM命令
 
+如何使用npm下载
+
+1.npm init(创建一个包管理文件,package.json)
+2.输入包的信息
+3.npm i 包名 ,在当前目录安装包
+4.利用package中的信息npm i 就可以下载所需要的包
+
 ```
 npm -v
 -查看版本· 
@@ -108,7 +119,7 @@ npm install 包名
 npm i 包名
 -在当前目录安装包
 
-· npm install包名-g
+npm install包名-g
 一全局模式安装包（一般都是一些工具）
 
 npm remove/r 包名
@@ -117,6 +128,10 @@ npm remove/r 包名
 npm install 包名 --save 安装包并添加到依赖中（一般都用这个）
 
 通过npm下载的包都放到node modules文件夹中我们通过npm下载的包，直接通过包名引入即可
+
+npm list 列出当前安装的包目录
+
+npm info 查看包信息
 
 ```
 ## node包查找
