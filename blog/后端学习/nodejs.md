@@ -35,7 +35,7 @@ function (exports,require, module,_filename,_ dirname) {
 
 ```
 
-## exports和module.exports
+## CommonJS规范中的exports和module.exports
 
 ### 变量存储在堆栈中的关系
 
@@ -96,6 +96,35 @@ CommonJS的包规范由包结构和包描述文件两个部分组成。
 -描述包的相关信息，以供外部读取分析
 ```
 
+## ES模块化写法
+
+方法1:
+
+```js
+1.import moduleA from './module/moduleA.js'
+通过import引入其他文件,不使用require
+注意:必须是引入完整路径的js文件
+
+2.export default moduleA向外暴露方法
+
+3.在package.json中添加"type": "module",即可正常运行js
+
+```
+
+方法二:
+
+```js
+1.import {moduleB} from './module/moduleB.js'
+通过import引入其他文件的一个模块
+注意:必须是引入完整路径的js文件
+
+2.export  moduleB向外暴露对象
+
+3.在package.json中添加"type": "module",即可正常运行js
+```
+
+>CommonJS和ES两种规范不可以混用
+
 ## NPM命令
 
 如何使用npm下载
@@ -134,6 +163,9 @@ npm list 列出当前安装的包目录
 npm info 查看包信息
 
 ```
+
+### nrm全局安装方式
+
 ## node包查找
 
 node在使用模块名字来引入模块时，它会首先在当前目录的node modules中寻找是否含有该模块，如果有则直接使用，如果没有则去上一级目录的node_modules中寻找，

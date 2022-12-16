@@ -18,6 +18,8 @@
 
 1、[Node.js笔记](/blog/后端学习/nodejs.md)
 
+2、[千峰Node.js笔记](/blog/后端学习/笔记.md)
+
 ## 框架学习
 
 1、[bootstrap](/blog/框架学习/bootstrap.md)
