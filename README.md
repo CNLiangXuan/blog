@@ -14,6 +14,8 @@
 
 2、[js笔记](/blog/前端学习/js.md)
 
+3、[js数据结构笔记](/blog/前端学习/js数据结构.md)
+
 ## 后端学习
 
 1、[Node.js笔记](/blog/后端学习/nodejs.md)
