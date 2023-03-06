@@ -89,3 +89,112 @@ vm.datalist.splice(0,1,"xiaoming")表示删除从第0个元素开始的第一个
 ## 数组的更新检测
 
 vm.items[indexOfltem] = newValue可以直接被拦截
+
+## 解决ajax跨域请求问题
+
+1. 删除发送数据的请求开头网址 
+
+```js
+ mounted() {
+    axios.get('/ajax/moreComingList?token=&movieIds=1479130,1298151,1308442,1203426,1425908,1218073,1336437,248949,1435030,1364066&optimus_uuid=EA12C040BC0111ED8382EBCFDAF31B6680301CCDFA724824A9253933EF5465A4&optimus_risk_level=71&optimus_code=10').then(res => {
+      console.log(res.data)
+    })
+  }
+  ```
+
+  2. 在vue.config中,当有/ajax出现时，自动请求https://i.maoyan.com
+
+  ```js
+  // 配置反向代理
+  devServer: {
+    proxy: {
+      "/ajax": {
+        target: "https://i.maoyan.com",
+        changeOrigin: true
+      }
+    }
+  }
+  ```
+
+  3. 当都请求同一个开头的请求时，可以在前面加上自定义字符串，通过在vue.config中的pathRewrite重写成"^/kerwin":''，即可变回原网址
+
+  ```js
+ mounted() {
+    axios.get('kerwin/ajax/moreComingList?token=&movieIds=1479130,1298151,1308442,1203426,1425908,1218073,1336437,248949,1435030,1364066&optimus_uuid=EA12C040BC0111ED8382EBCFDAF31B6680301CCDFA724824A9253933EF5465A4&optimus_risk_level=71&optimus_code=10').then(res => {
+      console.log(res.data)
+    })
+  }
+  ```
+
+  ```js
+  devServer: {
+    proxy: {
+      // "/ajax": {
+      //   target: "https://i.maoyan.com",
+      //   changeOrigin: true
+      // }
+
+      "/kerwin":{
+        target:"https://i.maoyan.com",
+        changeOrigin: true,
+        pathRewrite:{
+          "^/kerwin":''
+        }
+      }
+    }
+  }
+  ```
+
+  4. 重启服务器，报错消失，拿到跨域数据
+
+  总结：服务器与服务器之间可以通信，本地的文件也可以与本地服务器通信
+
+  @ 别名===> src的绝对路径
+
+  ## vue router配置映射表
+
+  地址与组件之间一一映射
+
+### rounter具体配置过程
+
+1. 找到router文件夹下的index.js,引入所需要的组件
+
+```js
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Films from "@/views/Films";
+import Cinemas from "@/views/Cinemas";
+import Center from "@/views/Center";
+```
+2. 注册路由插件
+
+```js
+Vue.use(VueRouter)  // 注册路由插件，两个全局 router-view router-link
+```
+
+3. 
+
+```js
+// 配置表
+const routes = [
+  {
+    path: '/films',
+    component: Films
+  },
+  {
+    path: '/cinemas',
+    component: Cinemas
+  },
+  {
+    path: '/center',
+    component: Center
+  }
+]
+```
+
+4. 在app.vue中插入路由容器
+
+```js
+<!--  路由容器  -->
+    <router-view></router-view>
+```
