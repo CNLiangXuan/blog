@@ -155,6 +155,20 @@ vm.items[indexOfltem] = newValue可以直接被拦截
 
   地址与组件之间一一映射
 
+### 3.路由原理:
+
+(1)hash路由==> location.hash 切换
+
+window.onhashchange监听路径的切换
+
+```js
+window.onhashchange=()=>{console.log("1111",location.hash)}
+```
+
+(2)history路由==> history.pushState 切换
+
+window.onpopstate监听路径的切换
+
 ### rounter具体配置过程
 
 1. 找到router文件夹下的index.js,引入所需要的组件
@@ -194,7 +208,80 @@ const routes = [
 
 4. 在app.vue中插入路由容器
 
-```js
+```html
 <!--  路由容器  -->
     <router-view></router-view>
+```
+
+## 重定向
+
+在index.js中
+
+```js
+//  重定向
+  {
+    path: '*',
+    redirect:'/films'
+  }
+```
+
+## 声明式导航
+
+```html
+    <!--  声明式导航  -->
+    <ul>
+      <li>
+        <a href="/#/films">电影</a>
+      </li>
+      <li>
+        <a href="/#/cinemas">影院</a>
+      </li>
+      <li>
+        <a href="/#/center">中心</a>
+      </li>
+    </ul>
+```
+
+```html
+ <ul>
+      <!--   vue-router 声明式导航(3之前，包括3)   -->
+      <li>
+        <router-link to="/films" active-class="kerwinactive">电影</router-link>
+      </li>
+      <li>
+        <router-link to="/cinemas" active-class="kerwinactive">影院</router-link>
+      </li>
+      <li>
+        <router-link to="/center" active-class="kerwinactive">中心</router-link>
+      </li>
+    </ul>
+
+    kerwinactive为自定义属性，也可以在style中直接加
+    .router-link-active {
+                        color: red;
+}
+```  
+
+```html
+      <router-link to="/films" custom v-slot="{navigate,isActive}">
+        <li @click="navigate" :class="isActive?'kerwinactive':''">电影</li>
+      </router-link>
+
+      <router-link to="/cinemas" custom v-slot="{navigate,isActive}">
+        <li @click="navigate" :class="isActive?'kerwinactive':''">影院</li>
+      </router-link>
+
+      <router-link to="/center" custom v-slot="{navigate,isActive}">
+        <li @click="navigate" :class="isActive?'kerwinactive':''">中心</li>
+      </router-link>
+
+以上是新版本插槽写法，在旧版本中使用tag="li"
+custom 表示自定义，
+在to加上:实现动态绑定，可遍历出这三个节点
+
+<router-link v-for="i in datalist " :to="i.adress" custom v-slot="{navigate,isActive}">
+<li @click="navigate" :class="isActive?'kerwinactive':''">{{i.name}}</li>
+</router-link>
+
+ datalist: [{adress:"/films",name:"电影"}, {adress:"/cinemas",name:"影院"},{adress:"/center",name:"中心"},]
 ```
