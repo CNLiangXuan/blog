@@ -285,3 +285,31 @@ custom 表示自定义，
 
  datalist: [{adress:"/films",name:"电影"}, {adress:"/cinemas",name:"影院"},{adress:"/center",name:"中心"},]
 ```
+
+### 嵌套路由
+
+只切换一个组件中的一个组件，在该组件中想切换放入一个容器`<router-view></router-view>`
+
+在index.js中引入
+
+```js
+import Films from "@/views/Films";
+import Nowplaying from "@/views/films/Nowplaying";
+import Comingson from "@/views/films/Comingson";
+
+// 在配置表中的films中加入children属性
+    path: '/films',
+    component: Films,
+    children: [
+      {
+        path: '/films/nowplaying',
+        component: Nowplaying
+      },
+      {
+        path: '/films/comingson',
+        component: Comingson
+      }
+    ],
+```
+
+
