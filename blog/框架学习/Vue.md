@@ -98,7 +98,7 @@ vm.items[indexOfltem] = newValue可以直接被拦截
  mounted() {
     axios.get('/ajax/moreComingList?token=&movieIds=1479130,1298151,1308442,1203426,1425908,1218073,1336437,248949,1435030,1364066&optimus_uuid=EA12C040BC0111ED8382EBCFDAF31B6680301CCDFA724824A9253933EF5465A4&optimus_risk_level=71&optimus_code=10').then(res => {
       console.log(res.data)
-    })
+    }) 
   }
   ```
 
@@ -312,4 +312,274 @@ import Comingson from "@/views/films/Comingson";
     ],
 ```
 
+### 编程式导航
 
+列表的详情页跳转,方法一router-link
+
+```html
+      <router-link to="/detail">
+      {{data}}
+      </router-link>
+```
+
+2.编程式导航
+
+```html
+      <li v-for="data in datalist" :key="data" @click="handleChangePage()">
+        {{ data }}
+      </li>
+```
+
+```js
+        methods: {
+    handleChangePage() {
+    //   location.href = '#/detail'   这个方法只能判断带#的
+     this.$router.push('/detail')   //这个方法可以判断是否带#，vue官方方法，与router-link搭配使用
+    }
+  }
+```
+
+### 动态路由
+
+在nowplaying中传入id
+
+```html
+      <li v-for="data in datalist" :key="data" @click="handleChangePage(data)">
+        {{ data }}
+      </li>
+```
+
+```js
+  methods: {
+      handleChangePage(id)
+      {
+        // location.href = '#/detail'
+        console.log(id)
+        this.$router.push(`/detail/${id}`)      // 相当于/detail/11111，id会动态切换
+      }
+    }
+```
+
+在index.js中加入动态二级路由
+
+```js
+  {
+    path: '/detail/:id',  // 动态二级路由,id名字可随意替换
+    component: Detail
+  },
+```
+利用生命周期可以拿到动态路由的id
+
+```js
+  created() {
+    // 当前匹配的路由
+    console.log("created",this.$route.params.id)    //route而不是router,id与index.js中自己取的名字匹配
+  }
+```
+
+### 命名路由
+
+index.js,name属性
+
+```js
+  {
+    name:'kerwinData',
+    path: '/detail/:id',  // 动态二级路由
+    component: Detail
+  },
+```
+
+```js
+      //  2-通过命名路由跳转
+      this.$router.push({
+        name: 'kerwinData',
+        params: {
+          id
+        }
+      })
+```
+
+### 路由模式
+
+#### hash
+
+- 定义：hash 模式是一种把前端路由的路径用井号 # 拼接在真实 url 后面的模式。当井号 # 后面的路径发生变化时，浏览器并不会重新发起请求，而是会触发 onhashchange 事件。
+
+- hash 可以改变 url ，但是不会触发页面重新加载（hash的改变是记录在 window.history 中），即不会刷新页面。也就是说，所有页面的跳转都是在客户端进行操作。因此，这并不算是一次 http 请求，所以这种模式不利于 SEO 优化。hash 只能修改 # 后面的部分，所以只能跳转到与当前 url 同文档的 url 。
+
+- hash 通过 window.onhashchange 的方式，来监听 hash 的改变，借此实现无刷新跳转的功能。
+
+- hash 永远不会提交到 server 端（可以理解为只在前端自生自灭）
+
+#### History模式
+
+- 定义：history API 是 H5 提供的新特性，允许开发者直接更改前端路由，即更新浏览器 URL 地址而不重新发起请求。
+
+- 与hash的区别：
+
+```
+正常页面浏览
+
+https://github.com/xxx 刷新页面
+
+https://github.com/xxx/yyy 刷新页面
+
+https://github.com/xxx/yyy/zzz 刷新页面
+
+改造H5 history模式
+
+https://github.com/xxx 刷新页面
+
+https://github.com/xxx/yyy 前端跳转，不刷新页面
+
+https://github.com/xxx/yyy/zzz 前端跳转，不刷新页面
+```
+
+- history的特点
+
+新的 url 可以是与当前 url 同源的任意 url ，也可以是与当前 url 一样的地址，但是这样会导致的一个问题是，会把重复的这一次操作记录到栈当中。
+通过 history.state ，添加任意类型的数据到记录中。
+可以额外设置 title 属性，以便后续使用。
+通过 pushState 、 replaceState 来实现无刷新跳转的功能。
+
+- 存在问题
+
+- 对于 history 来说，确实解决了不少 hash 存在的问题，但是也带来了新的问题。具体如下：
+
+- 使用 history 模式时，在对当前的页面进行刷新时，此时浏览器会重新发起请求。如果 nginx 没有匹配得到当前的 url ，就会出现 404 的页面。
+
+- 而对于 hash 模式来说，  它虽然看着是改变了 url ，但不会被包括在 http 请求中。所以，它算是被用来指导浏览器的动作，并不影响服务器端。因此，改变 hash 并没有真正地改变 url ，所以页面路径还是之前的路径， nginx 也就不会拦截。
+因此，在使用 history 模式时，需要通过服务端来允许地址可访问，如果没有设置，就很容易导致出现 404 的局面。
+
+- 两者选择
+
+- to B 的系统推荐用 hash ，相对简单且容易使用，且因为 hash 对 url 规范不敏感；
+- to C 的系统，可以考虑选择 H5 history ，但是需要服务端支持；
+- 能先用简单的，就别用复杂的，要考虑成本和收益。
+
+### 路由拦截
+
+#### 全局拦截
+
+- meta:路由源信息
+
+```js
+  {
+    path: '/center',
+    component: Center,
+    meta: {
+      isKerwinRequired: true
+    }
+  },
+  {
+    path: '/order',
+    component: Order,
+    meta: {
+      isKerwinRequired: true
+    }
+  }
+
+//全局拦截
+router.beforeEach((to, from, next) => {
+  console.log(to)
+  if (to.meta.isKerwinRequired) {      // 授权通过
+    // 判断本地存储中是否有token
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    next()
+  }
+
+})
+```
+
+#### 局部拦截
+
+直接写在center的路由代码中
+
+```js
+方法一：
+  {
+    path: '/center',
+    component: Center,
+    meta: {
+      isKerwinRequired: true
+    },
+    // 路由独享拦截
+    beforeEnter: (to, from, next) => {
+      console.log(to)
+      if (to.meta.isKerwinRequired) {      // 授权通过
+        // 判断本地存储中是否有token
+        if (localStorage.getItem('token')) {
+          next()
+        } else {
+          next({
+            path: '/login',
+            query: {redirect: to.fullPath}
+          })
+        }
+      } else {
+        next()
+      }
+    }
+  },
+
+方法二：
+在组件中编写路由的生命周期函数
+export default {
+  name: "Center",
+  // 路由的生命周期
+  beforeRouteEnter(to,from,next){
+    if (localStorage.getItem('token')) {
+      next()
+    } else {
+      next({
+        path: '/login',
+        query:{redirect: to.fullPath}
+      })
+    }
+  }
+}
+
+```
+
+### 路由懒加载
+
+```js
+// import Order from "@/views/Order";注释掉
+  {
+    path: '/order',
+    component: ()=> import('@/views/Order'),  // 懒加载,到这个地方才开始导入
+    meta: {
+      isKerwinRequired: true
+    }
+  },
+```
+
+## rem复习
+
+```html
+    <script>
+        //          fontsize计算
+        document.documentElement.style.fontSize = document.documentElement.clientWidth/750*100+'px'
+
+        // 750为设计稿的要求宽度，100是为了计算方便
+    </script>
+    <!-- 使用方法 -->
+    <style>
+  body {
+    font-size: 16px;    //还原，不然会撑开
+  }
+
+  .box {
+  width: 7.5rem;
+  height: 200px;
+  background-color: yellowgreen;
+  }
+    </style>
+```
+
+> 模块化开发中，只有
