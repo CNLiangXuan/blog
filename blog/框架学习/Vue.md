@@ -180,6 +180,8 @@ import Films from "@/views/Films";
 import Cinemas from "@/views/Cinemas";
 import Center from "@/views/Center";
 ```
+
+在main.js中引入`import router from "@/router";`
 2. 注册路由插件
 
 ```js
