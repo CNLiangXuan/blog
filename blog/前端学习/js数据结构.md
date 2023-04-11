@@ -2,6 +2,57 @@
 
 Map数据结构类似于对象，是健值对的集合，传统的键只能是字符串，Map的挺不限于字符串，各种类型的值都可以当作键
 
+Map 是一个带键的数据项的集合，就像一个 Object 一样。 但是它们最大的差别是 Map 允许任何类型的键（key）。
+
+它的方法和属性如下：
+
+new Map() —— 创建 map。
+
+map.set(key, value) —— 根据键存储值。
+
+map.get(key) —— 根据键来返回值，如果 map 中不存在对应的 key，则返回 undefined。
+
+map.has(key) —— 如果 key 存在则返回 true，否则返回 false。
+
+map.delete(key) —— 删除指定键的值。
+
+map.clear() —— 清空 map。
+
+map.size —— 返回当前元素个数。
+
+### Map 迭代
+
+如果要在 map 里使用循环，可以使用以下三个方法：
+
+map.keys() —— 遍历并返回一个包含所有键的可迭代对象，
+
+map.values() —— 遍历并返回一个包含所有值的可迭代对象，
+
+map.entries() —— 遍历并返回一个包含所有实体 [key, value] 的可迭代对象，for..of 在默认情况下使用的就是这个。
+
+```js
+let recipeMap = new Map([
+  ['cucumber', 500],
+  ['tomatoes', 350],
+  ['onion',    50]
+]);
+
+// 遍历所有的键（vegetables）
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
+}
+
+// 遍历所有的值（amounts）
+for (let amount of recipeMap.values()) {
+  alert(amount); // 500, 350, 50
+}
+
+// 遍历所有的实体 [key, value]
+for (let entry of recipeMap) { // 与 recipeMap.entries() 相同
+  alert(entry); // cucumber,500 (and so on)
+}
+```
+
 ## Set
 
 ### Set 实例的操作方法
