@@ -137,3 +137,6 @@ console.log(newArr); // [1, 2, 3]
 let set = new Set([1, 2, 3, 3, 4]);
 let arr = Array.from(set)  //输出[1,2,3,4]
 ```
+
+#### 链表
+
